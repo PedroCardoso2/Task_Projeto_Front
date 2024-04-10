@@ -1,0 +1,83 @@
+.container {
+    background-color: black;
+    width: 25em;
+    height: 24.375em;
+    border-radius: 1.25em;
+    margin: auto;
+  }
+
+  /* Imagens TOPO conteiner */
+  .img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+    padding: 60px;
+  }
+  
+  .imageWrapper {
+    margin-right: 15px; 
+    align-self: flex-start;
+  }
+
+  /* INPUTS e BUTTONS abaixo CONTEINER */
+
+  .points {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2pc;
+  }
+  
+  .buttonEnviar {
+    margin-top: 30px; 
+    margin-bottom: 40px; 
+    align-self: center; 
+  }
+
+  .userName, .passWord{
+    border: none;
+    background-color: #D9D9D9;
+    padding-left: 10px;
+    width: 250px;
+    outline: none;
+  }
+
+.user{
+    margin-bottom: 25px;
+}
+
+.pass{
+    margin-bottom: 15px;
+}
+  
+
+  .user, .pass{
+    background-color: #D9D9D9;
+    width: 250px;
+    display: flex;
+    padding: 5px;
+    border-radius: 10px;
+  }
+
+  /* BUTÃO */
+
+  .buttonEnviar{
+    width: 170px;
+    height: 35px;
+    border-radius: 13px;
+    background-color: #D9D9D9;
+    border: none;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 12px;
+  }
+
+  
+  @media (max-width: 300px) {
+    .conteiner {
+      max-width: 90%;
+      width: 90%;
+      max-height: 90vh;
+    }
+  }
+  
