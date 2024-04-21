@@ -7,5 +7,5 @@ import Login from "./Pages/Lg/Login";
 import Cadastro from "./Pages/Cad/Cadastro";
 
 export default function Home() {
-  return <Cadastro/>;
+  return <Login/>;
 }
