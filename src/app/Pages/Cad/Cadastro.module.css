@@ -1,7 +1,7 @@
 .container {
     background-color: black;
     width: 25em;
-    height: 24.375em;
+    height: 500px;
     border-radius: 1.25em;
     margin: auto;
     margin-top: 150px;
@@ -44,17 +44,10 @@
     outline: none;
   }
 
-.user{
-    margin-bottom: 25px;
-}
 
-.pass{
-    margin-bottom: 15px;
-}
-  
-
-  .user, .pass{
+  .pass{
     background-color: #D9D9D9;
+    margin-bottom: 15px;
     width: 250px;
     display: flex;
     padding: 5px;
@@ -81,4 +74,3 @@
       max-height: 90vh;
     }
   }
-  
