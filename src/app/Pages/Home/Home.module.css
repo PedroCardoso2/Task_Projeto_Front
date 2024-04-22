@@ -1,10 +1,93 @@
-.navBar{
-    display: flex;
-    align-items: center;
+.navBar {
+  display: flex;
+  align-items: center;
 }
 
-.textNavbar{
-    display: flex;
-    padding: 5px;
+.conteiner{
+  display: flex;
+  margin: 0;
+  justify-content: center;
+
+}
+
+.conteinerOne{
+  display: block;
+}
+
+
+/* Imagem */
+.conteinerImg {
+  display: flex;
+  margin: 10px 10px;
+}
+
+.imageWrapper {
+  padding-right: 3px;
+}
+
+/* Textos */
+
+.textList {
+  font-size: 10px;
+  color: #656565;
+  padding: 5px;
+}
+
+.textNavbar {
+  display: flex;
+  padding: 5px;
+  margin: auto;
+  justify-content: center;
+}
+
+.textTaskListHome {
+  font-size: 40px;
+}
+
+/* Ademais */
+
+/* Ademais */
+
+
+#inputPesq {
+  border: none;
+  outline: none;
+  font-size: 11px;
+  background-color: #BEBEBE;
+  margin-left: 6px;
+  flex: 1; /* Ocupar todo o espaço disponível */
+}
+
+#pesqImg {
+  margin-left: 5px;
+  position: absolute; /* Posicionamento absoluto */
+  right: 5px; /* Ajustando o posicionamento à direita */
+}
+
+#adicionarImg {
+  margin-left: 5px; /* Adicionando margem esquerda */
+}
+
+.pesq {
+  position: relative; /* Definindo a posição relativa para elementos filhos posicionados absolutamente */
+  display: flex; 
+  align-items: center; 
+  border-radius: 10px;
+  background-color: #BEBEBE;
+  width: 420px;
+  height: 25px;
+  padding: 2px;
+}
+
+.pesqImg {
+
+}
+
+.conteinerHomeTask {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; 
 }
 

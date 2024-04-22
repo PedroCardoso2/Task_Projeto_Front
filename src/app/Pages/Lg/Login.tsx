@@ -37,8 +37,8 @@ export default function Login(){
 
             <div className={styles.points}>
                 <div className={styles.user}>
-                    <Image src={require('@/../../public/img/LC/user.svg')} alt="" width={16}/>
-                    <Inputs typeIp="text" placeHolder="Username" className={styles.userName} max="200" onChange={handleUserNameChange} />
+                    <Image src={require('@/../../public/img/LC/email.svg')} alt="" width={16}/>
+                    <Inputs typeIp="text" placeHolder="Email" className={styles.userName} max="200" onChange={handleUserNameChange} />
                 </div>
             
                 <div className={styles.pass}>
