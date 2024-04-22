@@ -8,14 +8,14 @@ export default function HomePrinc() {
         <Image
           src={require("@/../../public/img/EllipseBlack.svg")}
           alt=""
-          width={50}
+          width={30}
         />
       </div>
       <div className={styles.imageWrapper}>
         <Image
           src={require("@/../../public/img/RectangleBlack.svg")}
           alt=""
-          width={65}
+          width={40}
         />
       </div>
       <div className={styles.textNavbar}>

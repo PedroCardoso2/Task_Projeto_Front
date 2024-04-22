@@ -1,0 +1,10 @@
+.navBar{
+    display: flex;
+    align-items: center;
+}
+
+.textNavbar{
+    display: flex;
+    padding: 5px;
+}
+
