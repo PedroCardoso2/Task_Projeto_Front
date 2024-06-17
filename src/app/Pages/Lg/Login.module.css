@@ -1,10 +1,10 @@
 .container {
     background-color: black;
-    width: 25em;
-    height: 24.375em;
+    width: 30em;
+    height: 25.375em;
     border-radius: 1.25em;
     margin: auto;
-    margin-top: 150px;
+    margin-top: 180px;
   }
 
   /* Imagens TOPO conteiner */
@@ -46,10 +46,16 @@
 
 .user{
     margin-bottom: 25px;
-}
+    height: 25px;
+    display: flex;
+    align-items: center;
+  }
 
 .pass{
     margin-bottom: 15px;
+    height: 25px;
+    display: flex;
+    align-items: center;
 }
   
 

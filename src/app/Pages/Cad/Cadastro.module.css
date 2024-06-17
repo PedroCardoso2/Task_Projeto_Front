@@ -1,7 +1,7 @@
 .container {
     background-color: black;
-    width: 25em;
-    height: 500px;
+    width: 30em;
+    height: 525px;
     border-radius: 1.25em;
     margin: auto;
     margin-top: 150px;
@@ -42,6 +42,7 @@
     padding-left: 10px;
     width: 250px;
     outline: none;
+    height: 20px;
   }
 
 

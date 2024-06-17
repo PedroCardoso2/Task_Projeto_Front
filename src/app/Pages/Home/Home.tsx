@@ -10,14 +10,14 @@ export default function HomePrinc() {
             <Image
               src={require("@/../../public/img/EllipseBlack.svg")}
               alt=""
-              width={20}
+              width={40}
             />
           </div>
           <div className={styles.imageWrapper}>
             <Image
               src={require("@/../../public/img/RectangleBlack.svg")}
               alt=""
-              width={30}
+              width={55}
             />
           </div>
         </div>
@@ -37,7 +37,6 @@ export default function HomePrinc() {
 
       <div className={styles.conteiner}>
         <div className={styles.conteinerOne}>
-
           <div className={styles.taskPage}>
             <h1 className={styles.textTaskListHome}>Task List</h1>
           </div>
@@ -47,20 +46,22 @@ export default function HomePrinc() {
               <Image
                 src={require("@/../../public/img/adicionar.svg")}
                 alt=""
-                width={12}
+                width={18}
                 id={styles.adicionarImg}
               />
-              <input type="text" id={styles.inputPesq} placeholder="Pesquise pela Task ....."/>
+              <input
+                type="text"
+                id={styles.inputPesq}
+                placeholder="Pesquise pela Task ....."
+              />
               <Image
                 src={require("@/../../public/img/pesquisar.svg")}
                 alt=""
-                width={12}
+                width={18}
                 id={styles.pesqImg}
               />
             </div>
           </div>
-
-
         </div>
       </div>
     </div>

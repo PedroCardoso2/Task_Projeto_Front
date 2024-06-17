@@ -1,86 +1,82 @@
+.navBarPrincipal {
+  margin-top: 20px; /* Mantém a margem para afastar a barra de navegação do topo da página */
+}
+
 .navBar {
   display: flex;
   align-items: center;
-}
-
-.conteiner{
-  display: flex;
-  margin: 0;
   justify-content: center;
-
+  position: relative; /* Permite o posicionamento absoluto dos elementos filhos */
+  width: 100%; /* Garante que a barra de navegação ocupe a largura total da tela */
 }
 
-.conteinerOne{
-  display: block;
-}
-
-
-/* Imagem */
 .conteinerImg {
   display: flex;
-  margin: 10px 10px;
+  gap: 5px;
+  position: absolute;
+  left: 0; /* Alinha o contêiner de imagens ao lado esquerdo */
+  margin: 15px 10px; /* Ajuste a margem conforme necessário */
 }
 
+/* Imagem */
 .imageWrapper {
-  padding-right: 3px;
+  display: flex;
 }
 
 /* Textos */
-
 .textList {
   font-size: 10px;
   color: #656565;
   padding: 5px;
 }
 
+.taskPage {
+  text-align: center;
+  margin-top: 40px; /* Adiciona margem superior para afastar do navbar */
+}
+
 .textNavbar {
   display: flex;
-  padding: 5px;
-  margin: auto;
   justify-content: center;
+  gap: 15px; /* Espaçamento entre "Home" e "CheckList" */
 }
 
 .textTaskListHome {
-  font-size: 40px;
+  font-size: 50px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-/* Ademais */
-
-/* Ademais */
-
-
+/* Input de pesquisa */
 #inputPesq {
   border: none;
   outline: none;
-  font-size: 11px;
-  background-color: #BEBEBE;
+  background-color: #bebebe;
   margin-left: 6px;
-  flex: 1; /* Ocupar todo o espaço disponível */
+  width: 360px;
+  font-size: 15px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 #pesqImg {
   margin-left: 5px;
-  position: absolute; /* Posicionamento absoluto */
-  right: 5px; /* Ajustando o posicionamento à direita */
+  position: absolute;
+  right: 5px;
 }
 
 #adicionarImg {
-  margin-left: 5px; /* Adicionando margem esquerda */
+  margin-left: 5px;
 }
 
 .pesq {
   position: relative; /* Definindo a posição relativa para elementos filhos posicionados absolutamente */
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
   border-radius: 10px;
-  background-color: #BEBEBE;
+  background-color: #bebebe;
   width: 420px;
-  height: 25px;
+  height: 35px;
   padding: 2px;
-}
-
-.pesqImg {
-
 }
 
 .conteinerHomeTask {
@@ -88,6 +84,6 @@
   margin: auto;
   justify-content: center;
   align-items: center;
-  margin-top: 20px; 
+  margin-top: 20px;
+  margin-top: 40px; /* Adiciona margem superior para afastar do navbar */
 }
-
