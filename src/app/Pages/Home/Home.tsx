@@ -31,6 +31,19 @@ export default function HomePrinc() {
         setTasks(updateTask);
     }
 
+    function seachTask(textTask:string){
+        if(textTask != null && textTask !== ""){
+            const valuesTask = tasks.map(
+                task => {
+                   task.task === textTask ? {task : task.task, checkboxTask : task.task} : task
+                }
+            )
+        }else{
+            return tasks;
+        }
+        
+    }
+
 
     return (
         <div className={styles.navBarPrincipal}>
@@ -92,7 +105,7 @@ export default function HomePrinc() {
                             />
                             <button
                                 style={{ background: "none", border: "none", cursor:"pointer" }}
-                                onClick={() => toggleStatusTask}
+                                onClick={() => seachTask}
                             >
                                 <Image
                                     src={require("@/../../public/img/pesquisar.svg")}
