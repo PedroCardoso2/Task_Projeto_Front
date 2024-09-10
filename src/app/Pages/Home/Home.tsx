@@ -5,8 +5,9 @@ import { useState } from "react";
 
 
 export default function HomePrinc() {
+    const [task, setTask] = useState<number | undefined>();
 
-
+    console.log(task);
     return (
         <div className={styles.navBarPrincipal}>
             <div className={styles.navBar}>
@@ -50,7 +51,7 @@ export default function HomePrinc() {
                         <div className={styles.pesq}>
                             <button
                                 style={{ background: "none", border: "none" }}
-                          
+                                onClick={() => setTask(task => (task ?? 0) + 1)}
                             >
                                 <Image
                                     src={require("@/../../public/img/adicionar.svg")}
