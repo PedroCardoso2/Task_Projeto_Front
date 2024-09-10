@@ -91,7 +91,7 @@
 }
 
 
-.taskList{
+.taskList {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -99,4 +99,11 @@
   left: 50%;
   position: fixed;
   transform: translate(-50%, -200%);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.taskList.show {
+  opacity: 1;
+  transform: translate(-50%, -50%);
 }
