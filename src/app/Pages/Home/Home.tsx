@@ -33,11 +33,12 @@ export default function HomePrinc() {
 
     function seachTask(textTask:string){
         if(textTask != null && textTask !== ""){
-            const valuesTask = tasks.map(
-                task => {
-                   task.task === textTask ? {task : task.task, checkboxTask : task.task} : task
-                }
-            )
+            // const valuesTask = tasks.map(
+            //     task => task.task === textTask ? {task : task.task, checkboxTask : task.task} : task
+                
+            // )
+
+            setTasks(tasks => tasks.filter(task => task.task === textTask))
         }else{
             return tasks;
         }
