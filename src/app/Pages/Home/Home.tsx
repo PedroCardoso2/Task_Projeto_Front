@@ -2,12 +2,36 @@
 import styles from "@/app/Pages/Home/Home.module.css";
 import Image from "next/image";
 import { useState } from "react";
+import { Taks } from "./Task";
+
 
 
 export default function HomePrinc() {
-    const [task, setTask] = useState<number | undefined>();
+    const [tasks, setTasks] = useState<Taks[]>([]);
+    
 
-    console.log(task);
+    function addTask(){
+        let valueInput = document.querySelector<HTMLInputElement>("#inputPesq");
+        
+        if(valueInput != undefined && valueInput.value.trim() !== "" ){
+            setTasks([...tasks, {
+                task:  valueInput.value,
+                checkboxTask: false
+            }]);
+
+            valueInput.value = "";
+        }
+    }
+
+    function toggleStatusTask(index : number){
+        const updateTask = tasks.map((task, i) => 
+            i === index ? {...task, checkboxTask : !task.checkboxTask} : task
+        );
+        
+        setTasks(updateTask);
+    }
+
+
     return (
         <div className={styles.navBarPrincipal}>
             <div className={styles.navBar}>
@@ -51,7 +75,7 @@ export default function HomePrinc() {
                         <div className={styles.pesq}>
                             <button
                                 style={{ background: "none", border: "none" }}
-                                onClick={() => setTask(task => (task ?? 0) + 1)}
+                                onClick={() => addTask()}
                             >
                                 <Image
                                     src={require("@/../../public/img/adicionar.svg")}
@@ -80,7 +104,18 @@ export default function HomePrinc() {
                         </div>
                     </div>
 
-                    
+                    <ul>
+                {tasks.map((task, index) => (
+                    <li key={index}>
+                        <input
+                            type="checkbox"
+                            checked={task.checkboxTask}
+                            onChange={() => toggleStatusTask(index)}
+                        />
+                        {task.task}
+                    </li>
+                ))}
+            </ul>                  
 
                 </div>
             </div>
