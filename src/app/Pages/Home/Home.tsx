@@ -74,7 +74,7 @@ export default function HomePrinc() {
                     <div className={styles.conteinerHomeTask}>
                         <div className={styles.pesq}>
                             <button
-                                style={{ background: "none", border: "none" }}
+                                style={{ background: "none", border: "none", cursor:"pointer" }}
                                 onClick={() => addTask()}
                             >
                                 <Image
@@ -91,8 +91,8 @@ export default function HomePrinc() {
                                 placeholder="Pesquise pela Task ou Adicione 👀 ....."
                             />
                             <button
-                                style={{ background: "none", border: "none" }}
-                          
+                                style={{ background: "none", border: "none", cursor:"pointer" }}
+                                onClick={() => toggleStatusTask}
                             >
                                 <Image
                                     src={require("@/../../public/img/pesquisar.svg")}
@@ -109,17 +109,18 @@ export default function HomePrinc() {
             <div className={styles.tasklist}>
                 <ul>
                     {tasks.map((task, index) => (
-                        <li key={index}>
+                        <li key={index} className={styles.List}>
+                            {task.task}
                             <input
+                              className={styles.customCheckbox}
                                 type="checkbox"
                                 checked={task.checkboxTask}
                                 onChange={() => toggleStatusTask(index)}
                             />
-                            {task.task}
                         </li>
                     ))}
                 </ul>  
-                </div>
+            </div>
         </div>
     );
 }
