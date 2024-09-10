@@ -107,19 +107,19 @@ export default function HomePrinc() {
                 </div>
             </div>
             <div className={styles.tasklist}>
-                <ul>
-                    {tasks.map((task, index) => (
-                        <li key={index} className={styles.List}>
-                            {task.task}
+            {tasks.map((task, index) => (
+                <div key={index}>
+                   - {task.task}
                             <input
                               className={styles.customCheckbox}
                                 type="checkbox"
                                 checked={task.checkboxTask}
                                 onChange={() => toggleStatusTask(index)}
                             />
-                        </li>
+                </div>       
+                            
+                
                     ))}
-                </ul>  
             </div>
         </div>
     );
