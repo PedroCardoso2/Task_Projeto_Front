@@ -97,12 +97,9 @@
   margin-top: 20px;
   flex-direction: column;
   text-align: center;
-  
 }
 
-.List{
-  margin-bottom: 3px;
-}
+
 
 /* Classe local para estilizar o checkbox */
 .customCheckbox {
