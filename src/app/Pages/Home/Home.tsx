@@ -12,17 +12,7 @@ export default function HomePrinc() {
     const [estado, setEstado] = useState<boolean>(true);
     const [pesquisa, setPesquisa] = useState("");
 
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-          console.log("Executando a cada segundo");
-        }, 1000);
-      
-        // Função de limpeza
-        return () => {
-          clearInterval(intervalId);
-          console.log("Intervalo limpo");
-        };
-      }, []);
+ 
       
 
     function addTask(){
@@ -39,8 +29,7 @@ export default function HomePrinc() {
 
     function toggleStatusTask(index : number){
         const updateTask = tasks.map((task, i) => 
-            i === index ? {...task, checkboxTask : !task.checkboxTask} : task
-        );
+            i === index ? {...task, checkboxTask : !task.checkboxTask} : task);
         
         setTasks(updateTask);
     }
@@ -54,10 +43,9 @@ export default function HomePrinc() {
             setStade(filteredTasks);
             setEstado(false);
         } else {
-
             setEstado(true);
         }
-        console.log(estado);
+
     }
     
 
@@ -105,7 +93,7 @@ export default function HomePrinc() {
                         <div className={styles.pesq}>
                             <button
                                 style={{ background: "none", border: "none", cursor:"pointer" }}
-                                onClick={() => addTask}
+                                onClick={() => addTask()}
                             >
                                 <Image
                                     src={require("@/../../public/img/adicionar.svg")}
@@ -124,7 +112,7 @@ export default function HomePrinc() {
                             />
                             <button
                                 style={{ background: "none", border: "none", cursor:"pointer" }}
-                                onClick={() => searchTask}
+                               onClick={() => searchTask()}
                             >
                                 <Image
                                     src={require("@/../../public/img/pesquisar.svg")}
