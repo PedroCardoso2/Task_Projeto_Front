@@ -139,6 +139,7 @@ export default function HomePrinc() {
                                 checked={task.checkboxTask}
                                 onChange={() => toggleStatusTask(index)}
                             />
+                    
                         </div>
                     )) 
                     
