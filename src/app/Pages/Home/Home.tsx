@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Taks } from "./Task";
 import { IoIosAddCircle } from "react-icons/io";
-
 import { ImBin2 } from "react-icons/im";
 
 
@@ -82,16 +81,11 @@ export default function HomePrinc() {
                     </div>
                 </div>
                 <div className={styles.textNavbar}>
-                    <a href="">
+               
                         <h3 id={styles.homeText} className={styles.textList}>
                             Home
                         </h3>
-                    </a>
-                    <a href="">
-                        <h3 id={styles.checkList} className={styles.textList}>
-                            CheckList
-                        </h3>
-                    </a>
+                 
                 </div>
             </div>
 
@@ -169,7 +163,7 @@ export default function HomePrinc() {
                     
                     stade.map((task, index) => (
                         <div key={index} style={{display: "flex", alignItems: "center", justifyContent: "center", marginTop: "10px"}}>
-                           <textarea name="" id="">{task.task}</textarea>  
+                           {task.task} 
                             <input
                                 className={styles.customCheckbox}
                                 type="checkbox"
