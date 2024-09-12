@@ -31,6 +31,10 @@ export default function HomePrinc() { const [tasks, setTasks] = useState<Taks[]>
         }
     }
 
+    function delTask(){
+        
+    }
+
     function toggleStatusTask(index : number){
         const updateTask = tasks.map((task, i) => 
             i === index ? {...task, checkboxTask : !task.checkboxTask} : task);
@@ -95,12 +99,19 @@ export default function HomePrinc() { const [tasks, setTasks] = useState<Taks[]>
 
                     <div className={styles.conteinerHomeTask}>
                         <div className={styles.pesq}>
-                            <button
-                                style={{ background: "none", border: "none", cursor:"pointer" }}
-                                onClick={() => addTask()}
-                            >
-                                <IoIosAddCircle style={{height: "5pc"}}/>
-                            </button>
+                        <button
+    style={{ 
+        background: "none", 
+        border: "none", 
+        cursor: "pointer", 
+        fontSize: "20px",
+        marginTop: "5px"  
+    }}
+    onClick={() => addTask()}
+>
+    <IoIosAddCircle />
+</button>
+
                             <input
                                 type="text"
                                 id="inputPesq"
