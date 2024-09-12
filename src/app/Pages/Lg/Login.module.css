@@ -52,7 +52,7 @@
 }
 
 .userName:focus, .passWord:focus {
-  background-color: #E0E0E0;
+  background-color: #F0F0F0;
 }
 
 .user, .pass {
@@ -60,6 +60,7 @@
   width: 250px;
   display: flex;
   padding: 5px;
+  height: 25px;
   border-radius: 10px;
   margin-bottom: 20px;
   align-items: center;
