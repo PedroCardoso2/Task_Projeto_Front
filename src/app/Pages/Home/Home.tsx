@@ -3,11 +3,13 @@ import styles from "@/app/Pages/Home/Home.module.css";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Taks } from "./Task";
+import { IoIosAddCircle } from "react-icons/io";
+
+import { ImBin2 } from "react-icons/im";
 
 
 
-export default function HomePrinc() {
-    const [tasks, setTasks] = useState<Taks[]>([]);
+export default function HomePrinc() { const [tasks, setTasks] = useState<Taks[]>([]);
     const [stade, setStade] = useState<Taks[]>([]);
     const [estado, setEstado] = useState<boolean>(true);
     const [pesquisa, setPesquisa] = useState("");
@@ -24,6 +26,8 @@ export default function HomePrinc() {
                 checkboxTask: false
             }]);
             valueInput.value = "";
+
+            setEstado(true)
         }
     }
 
@@ -95,12 +99,7 @@ export default function HomePrinc() {
                                 style={{ background: "none", border: "none", cursor:"pointer" }}
                                 onClick={() => addTask()}
                             >
-                                <Image
-                                    src={require("@/../../public/img/adicionar.svg")}
-                                    alt=""
-                                    width={18}
-                                    id={styles.adicionarImg}
-                                />
+                                <IoIosAddCircle style={{height: "5pc"}}/>
                             </button>
                             <input
                                 type="text"
@@ -127,11 +126,11 @@ export default function HomePrinc() {
                 </div>
             </div>
             <div className={styles.tasklist}>
-                <span className="ola"><h1>
+           
                 {
                     estado ? 
                     tasks.map((task, index) => (
-                        <div key={index}>
+                        <div key={index} style={{display: "flex", alignItems: "center", justifyContent: "center", marginTop: "10px"}}>
                             {task.task}
                             <input
                                 className={styles.customCheckbox}
@@ -139,6 +138,9 @@ export default function HomePrinc() {
                                 checked={task.checkboxTask}
                                 onChange={() => toggleStatusTask(index)}
                             />
+                            <button style={{background: "none", marginLeft: "8px",  border: "none", display: "flex"}}>
+                                <ImBin2 style={{width: "10px"}}/>
+                            </button>
                     
                         </div>
                     )) 
@@ -146,7 +148,7 @@ export default function HomePrinc() {
                     : 
                     
                     stade.map((task, index) => (
-                        <div key={index}>
+                        <div key={index} style={{display: "flex", alignItems: "center", justifyContent: "center", marginTop: "10px"}}>
                             {task.task}
                             <input
                                 className={styles.customCheckbox}
@@ -154,12 +156,16 @@ export default function HomePrinc() {
                                 checked={task.checkboxTask}
                                 onChange={() => toggleStatusTask(index)}
                             />
+                            <button style={{background: "none", marginLeft: "8px",  border: "none", display: "flex"}}>
+                                <ImBin2 style={{width: "10px"}}/>
+                            </button>
+                    
                         </div>
                     ))
                 }
                     
                     
-                    </h1></span>
+
             </div>
         </div>
     );
