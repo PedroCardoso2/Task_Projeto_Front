@@ -9,7 +9,8 @@ import { ImBin2 } from "react-icons/im";
 
 
 
-export default function HomePrinc() { const [tasks, setTasks] = useState<Taks[]>([]);
+export default function HomePrinc() { 
+    const [tasks, setTasks] = useState<Taks[]>([]);
     const [stade, setStade] = useState<Taks[]>([]);
     const [estado, setEstado] = useState<boolean>(true);
     const [pesquisa, setPesquisa] = useState("");
@@ -31,8 +32,11 @@ export default function HomePrinc() { const [tasks, setTasks] = useState<Taks[]>
         }
     }
 
-    function delTask(){
-        
+    function delTask(text : String){
+        const nomeFilter = tasks.filter(nameTask => nameTask.task == text);
+        if(!nomeFilter) return;
+        const newTask: Taks[] = tasks.filter(nameTask => nameTask.task !== text);
+        setTasks(newTask)
     }
 
     function toggleStatusTask(index : number){
@@ -141,18 +145,23 @@ export default function HomePrinc() { const [tasks, setTasks] = useState<Taks[]>
                 {
                     estado ? 
                     tasks.map((task, index) => (
+                     
                         <div key={index} style={{display: "flex", alignItems: "center", justifyContent: "center", marginTop: "10px"}}>
-                            {task.task}
+                            {task.task}  
+
                             <input
                                 className={styles.customCheckbox}
                                 type="checkbox"
                                 checked={task.checkboxTask}
                                 onChange={() => toggleStatusTask(index)}
                             />
-                            <button style={{background: "none", marginLeft: "8px",  border: "none", display: "flex"}}>
+                            <button 
+                            style={{background: "none", marginLeft: "8px",  border: "none", display: "flex", cursor:"pointer"}}
+                            onClick={() => delTask(task.task)}>
                                 <ImBin2 style={{width: "10px"}}/>
                             </button>
-                    
+                        
+                        
                         </div>
                     )) 
                     
@@ -160,17 +169,19 @@ export default function HomePrinc() { const [tasks, setTasks] = useState<Taks[]>
                     
                     stade.map((task, index) => (
                         <div key={index} style={{display: "flex", alignItems: "center", justifyContent: "center", marginTop: "10px"}}>
-                            {task.task}
+                           <textarea name="" id="">{task.task}</textarea>  
                             <input
                                 className={styles.customCheckbox}
                                 type="checkbox"
                                 checked={task.checkboxTask}
                                 onChange={() => toggleStatusTask(index)}
                             />
-                            <button style={{background: "none", marginLeft: "8px",  border: "none", display: "flex"}}>
+                            <button 
+                            style={{background: "none", marginLeft: "8px",  border: "none", display: "flex", cursor:"pointer"}}
+                            onClick={() => delTask(task.task)}>
                                 <ImBin2 style={{width: "10px"}}/>
                             </button>
-                    
+
                         </div>
                     ))
                 }
