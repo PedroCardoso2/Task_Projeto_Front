@@ -71,3 +71,14 @@ Siga os passos abaixo para rodar o projeto localmente.
 
 ```bash
 git clone https://github.com/seu-usuario/tasklist.git
+
+
+![image](https://github.com/user-attachments/assets/e99148f8-88aa-4799-9c41-97f03947aa31)
+
+
+
+
+![image](https://github.com/user-attachments/assets/a1381d96-c91c-4cc8-ad8c-17c6c6878ed9)
+
+
+
