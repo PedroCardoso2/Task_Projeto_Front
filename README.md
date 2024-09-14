@@ -34,3 +34,40 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+# TaskList
+
+TaskList é uma aplicação de gerenciamento de tarefas diárias, permitindo que os usuários criem, editem e removam atividades do seu dia a dia. O projeto foi desenvolvido com [Next.js](https://nextjs.org/), um poderoso framework para React que suporta renderização no servidor e oferece uma experiência de desenvolvimento moderna.
+
+## Funcionalidades
+
+- Cadastro e login de usuários
+- Criação de tarefas diárias
+- Edição e exclusão de tarefas
+- Visualização do progresso diário
+- Organização das tarefas por prioridade
+
+## Tecnologias Utilizadas
+
+- **Next.js**: Framework React com renderização no lado do servidor (SSR)
+- **React**: Biblioteca para criação de interfaces de usuário
+- **TypeScript**: Superset de JavaScript que adiciona tipagem estática
+- **Tailwind CSS**: Framework utilitário para estilização rápida e responsiva
+- **MongoDB**: Banco de dados NoSQL para armazenamento de tarefas
+- **JWT (JSON Web Token)**: Para autenticação segura
+
+## Instalação
+
+Siga os passos abaixo para rodar o projeto localmente.
+
+### Pré-requisitos
+
+- Node.js (>= 14.x)
+- npm ou yarn
+
+### Passos para rodar
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/seu-usuario/tasklist.git
