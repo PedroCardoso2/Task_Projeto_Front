@@ -1,5 +1,5 @@
 .navBarPrincipal {
-  margin-top: 20px; /* Mantém a margem para afastar a barra de navegação do topo da página */
+  margin-top: 40px; /* Mantém a margem para afastar a barra de navegação do topo da página */
 }
 
 .navBar {
@@ -87,7 +87,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 20px;
-  margin-top: 40px; /* Adiciona margem superior para afastar do navbar */
+  margin-top: 40px; 
 }
 
 
@@ -101,7 +101,7 @@
 
 
 
-/* Classe local para estilizar o checkbox */
+
 .customCheckbox {
   position: relative;
   width: 20px;

@@ -6,6 +6,9 @@ import { Taks } from "./Task";
 import { IoIosAddCircle } from "react-icons/io";
 import { ImBin2 } from "react-icons/im";
 import { SlList } from "react-icons/sl";
+import { FcAbout } from "react-icons/fc";
+import { FcContacts } from "react-icons/fc";
+import { FcHome } from "react-icons/fc";
 
 export default function HomePrinc() { 
     const [tasks, setTasks] = useState<Taks[]>([]);
@@ -74,9 +77,7 @@ export default function HomePrinc() {
                         />
                     </div>
                 </div>
-                <div className={styles.textNavbar}>
-                    <h3 id={styles.homeText} className={styles.textList}>Home</h3>
-                </div>
+           
             </div>
 
             <div className={styles.conteiner}>
@@ -159,10 +160,7 @@ export default function HomePrinc() {
                     ))
                 }
             </div>
-
-            {/* Sidebar */}
-            
-
+        
             <div className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
             <button 
                 className={styles.sidebarToggle} 
@@ -171,12 +169,11 @@ export default function HomePrinc() {
             >
                 <SlList />
             </button>
-                <h2>Sidebar Menu</h2>
+                <h2>Menu Principal</h2>
                 <ul>
-                    <li>Home</li>
-                    <li>About</li>
-                    <li>Services</li>
-                    <li>Contact</li>
+                    <li>Home <FcHome /></li>
+                    <li>About <FcAbout/></li>
+                    <li>Contact <FcContacts /></li>
                 </ul>
             </div>
         </div>
