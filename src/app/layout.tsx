@@ -17,8 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head><title>Taks List</title></head>
+    <html lang="pt-br">
+      <head>
+        <title>Taks List</title>
+        <link rel="icon" href="../../public/img/list.png" ></link>
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );
