@@ -136,21 +136,21 @@
   font-weight: bold;
 }
 
-/* Sidebar */
+
 .sidebar {
   position: fixed;
-  right: -250px; /* Inicialmente escondida à direita */
+  right: -250px; 
   top: 0;
-  width: 250px;
+  width: 270px;
   height: 100%;
   background-color: #f4f4f4;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-  transition: right 0.3s ease; /* Animação suave */
+  transition: right 0.3s ease;
   padding: 20px;
 }
 
 .sidebar.open {
-  right: 0; /* Quando aberta, a sidebar desliza para a direita */
+  right: 0; 
 }
 
 .sidebar h2 {
@@ -167,7 +167,6 @@
   text-align: center;
 }
 
-/* Botão para abrir/fechar a sidebar */
 .sidebar-toggle {
   position: fixed;
   right: 10px;
@@ -188,7 +187,7 @@
   background: none;
   border: none;
   font-size: 20px;
-  margin-right: 100px;
+
 }
 
 
