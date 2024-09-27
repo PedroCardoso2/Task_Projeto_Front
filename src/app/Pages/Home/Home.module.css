@@ -1,5 +1,5 @@
 .navBarPrincipal {
-  margin-top: 20px; /* Mantém a margem para afastar a barra de navegação do topo da página */
+  margin-top: 40px; /* Mantém a margem para afastar a barra de navegação do topo da página */
 }
 
 .navBar {
@@ -87,7 +87,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 20px;
-  margin-top: 40px; /* Adiciona margem superior para afastar do navbar */
+  margin-top: 40px; 
 }
 
 
@@ -101,7 +101,7 @@
 
 
 
-/* Classe local para estilizar o checkbox */
+
 .customCheckbox {
   position: relative;
   width: 20px;
@@ -135,5 +135,60 @@
   font-size: 14px; 
   font-weight: bold;
 }
+
+
+.sidebar {
+  position: fixed;
+  right: -250px; 
+  top: 0;
+  width: 270px;
+  height: 100%;
+  background-color: #f4f4f4;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  transition: right 0.3s ease;
+  padding: 20px;
+}
+
+.sidebar.open {
+  right: 0; 
+}
+
+.sidebar h2 {
+  text-align: center;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+  text-align: center;
+}
+
+.sidebar-toggle {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.sidebar-toggle:hover {
+  background-color: #333;
+}
+
+.sidebarToggle{
+  background: none;
+  border: none;
+  font-size: 20px;
+
+}
+
 
 

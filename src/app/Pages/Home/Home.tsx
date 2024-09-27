@@ -5,18 +5,18 @@ import { useEffect, useState } from "react";
 import { Taks } from "./Task";
 import { IoIosAddCircle } from "react-icons/io";
 import { ImBin2 } from "react-icons/im";
-
-
+import { SlList } from "react-icons/sl";
+import { FcAbout } from "react-icons/fc";
+import { FcContacts } from "react-icons/fc";
+import { FcHome } from "react-icons/fc";
 
 export default function HomePrinc() { 
     const [tasks, setTasks] = useState<Taks[]>([]);
     const [stade, setStade] = useState<Taks[]>([]);
     const [estado, setEstado] = useState<boolean>(true);
     const [pesquisa, setPesquisa] = useState("");
-
- 
-      
-
+    const [isOpen, setIsOpen] = useState<boolean>(false); // Estado para abrir/fechar sidebar
+  
     function addTask(){
          let valueInput = document.querySelector<HTMLInputElement>("#inputPesq");
         
@@ -56,11 +56,8 @@ export default function HomePrinc() {
         } else {
             setEstado(true);
         }
-
     }
-    
-
-
+  
     return (
         <div className={styles.navBarPrincipal}>
             <div className={styles.navBar}>
@@ -80,13 +77,7 @@ export default function HomePrinc() {
                         />
                     </div>
                 </div>
-                <div className={styles.textNavbar}>
-               
-                        <h3 id={styles.homeText} className={styles.textList}>
-                            Home
-                        </h3>
-                 
-                </div>
+           
             </div>
 
             <div className={styles.conteiner}>
@@ -97,18 +88,12 @@ export default function HomePrinc() {
 
                     <div className={styles.conteinerHomeTask}>
                         <div className={styles.pesq}>
-                        <button
-    style={{ 
-        background: "none", 
-        border: "none", 
-        cursor: "pointer", 
-        fontSize: "20px",
-        marginTop: "5px"  
-    }}
-    onClick={() => addTask()}
->
-    <IoIosAddCircle />
-</button>
+                            <button
+                                style={{ background: "none", border: "none", cursor: "pointer", fontSize: "20px", marginTop: "5px" }}
+                                onClick={() => addTask()}
+                            >
+                                <IoIosAddCircle />
+                            </button>
 
                             <input
                                 type="text"
@@ -118,9 +103,10 @@ export default function HomePrinc() {
                                 value={pesquisa}
                                 onChange={e => setPesquisa(e.target.value)}
                             />
+
                             <button
                                 style={{ background: "none", border: "none", cursor:"pointer" }}
-                               onClick={() => searchTask()}
+                                onClick={() => searchTask()}
                             >
                                 <Image
                                     src={require("@/../../public/img/pesquisar.svg")}
@@ -131,18 +117,15 @@ export default function HomePrinc() {
                             </button>
                         </div>
                     </div>             
-
                 </div>
             </div>
+
             <div className={styles.tasklist}>
-           
                 {
                     estado ? 
                     tasks.map((task, index) => (
-                     
                         <div key={index} style={{display: "flex", alignItems: "center", justifyContent: "center", marginTop: "10px"}}>
                             {task.task}  
-
                             <input
                                 className={styles.customCheckbox}
                                 type="checkbox"
@@ -150,17 +133,14 @@ export default function HomePrinc() {
                                 onChange={() => toggleStatusTask(index)}
                             />
                             <button 
-                            style={{background: "none", marginLeft: "8px",  border: "none", display: "flex", cursor:"pointer"}}
-                            onClick={() => delTask(task.task)}>
+                                style={{background: "none", marginLeft: "8px",  border: "none", display: "flex", cursor:"pointer"}}
+                                onClick={() => delTask(task.task)}
+                            >
                                 <ImBin2 style={{width: "10px"}}/>
                             </button>
-                        
-                        
                         </div>
                     )) 
-                    
                     : 
-                    
                     stade.map((task, index) => (
                         <div key={index} style={{display: "flex", alignItems: "center", justifyContent: "center", marginTop: "10px"}}>
                            {task.task} 
@@ -171,17 +151,30 @@ export default function HomePrinc() {
                                 onChange={() => toggleStatusTask(index)}
                             />
                             <button 
-                            style={{background: "none", marginLeft: "8px",  border: "none", display: "flex", cursor:"pointer"}}
-                            onClick={() => delTask(task.task)}>
+                                style={{background: "none", marginLeft: "8px",  border: "none", display: "flex", cursor:"pointer"}}
+                                onClick={() => delTask(task.task)}
+                            >
                                 <ImBin2 style={{width: "10px"}}/>
                             </button>
-
                         </div>
                     ))
                 }
-                    
-                    
-
+            </div>
+        
+            <div className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
+            <button 
+                className={styles.sidebarToggle} 
+                onClick={() => setIsOpen(!isOpen)}
+                
+            >
+                <SlList />
+            </button>
+                <h2>Menu Principal</h2>
+                <ul>
+                    <li>Home <FcHome /></li>
+                    <li>About <FcAbout/></li>
+                    <li>Contact <FcContacts /></li>
+                </ul>
             </div>
         </div>
     );
