@@ -6,5 +6,6 @@ import Cadastro from "./Pages/Cad/Cadastro";
 import HomePrinc from "./Pages/Home/Home";
 
 export default function Home() {
-  return <Login/>;
+  return <Cadastro/>;
+
 }

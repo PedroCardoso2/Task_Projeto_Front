@@ -10,7 +10,7 @@ export default function Cadastro(){
     const [passWord, setPassWord] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [email, setEmail] = useState('');
-    const [date, setDate] = useState('');
+
 
 
     const handleUserNameChange = (event : ChangeEvent<HTMLInputElement>) => {
@@ -29,9 +29,7 @@ export default function Cadastro(){
         setEmail(event.target.value);
     }
 
-    const handleDateChange = (event : ChangeEvent<HTMLInputElement>) => {
-        setDate(event.target.value);   
-    }
+   
 
 
     const handleButtonClick = () => {
@@ -39,7 +37,6 @@ export default function Cadastro(){
         console.log("Password: " + passWord);
         console.log("NewPassword: " + newPassword);
         console.log("Email: " + email);
-        console.log("Date Birth: " + date);
     }
 
     return(
@@ -74,10 +71,7 @@ export default function Cadastro(){
                     <Inputs typeIp="text" placeHolder="Email" className={styles.passWord} max="200" onChange={handleEmailChange} />
                 </div>
 
-                <div className={styles.pass}>
-                <Image src={require('@/../../public/img/LC/dateBirth.svg')} alt="" width={16} />
-                <Inputs typeIp="date" placeHolder="Date of birth" className={styles.passWord} max="200" onChange={handleDateChange} />
-                </div>
+            
 
                 <Button name="Enviar" css={styles.buttonEnviar} onClick={handleButtonClick}/>
             </div>
