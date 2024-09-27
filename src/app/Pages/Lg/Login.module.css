@@ -1,10 +1,9 @@
 /* Container */
 /* Container */
+
+
 .container {
   background-color: #1A1A1D;
-  width: 30em;
-  height: 25.375em;
-  border-radius: 1.25em;
   position: absolute; 
   top: 50%;
   left: 50%;
@@ -12,9 +11,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center; 
+  width: 100%;
+  height: 100%;
   align-items: center;
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
-  padding: 20px;
+
 }
 
 

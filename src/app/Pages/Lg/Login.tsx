@@ -25,6 +25,7 @@ export default function Login(){
     }
 
     return (
+  
         <div className={styles.container}>
             <div className={styles.img}>
                 <div className={styles.imageWrapper}>
@@ -49,5 +50,6 @@ export default function Login(){
                 <Button name="Enviar" css={styles.buttonEnviar} onClick={handleButtonClick}/>
             </div>
         </div>
+
     ); 
 }
