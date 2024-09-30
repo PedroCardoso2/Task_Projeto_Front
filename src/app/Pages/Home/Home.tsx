@@ -15,19 +15,41 @@ export default function HomePrinc() {
     const [stade, setStade] = useState<Taks[]>([]);
     const [estado, setEstado] = useState<boolean>(true);
     const [pesquisa, setPesquisa] = useState("");
-    const [isOpen, setIsOpen] = useState<boolean>(false); // Estado para abrir/fechar sidebar
-  
-    function addTask(){
+    const [isOpen, setIsOpen] = useState<boolean>(false); 
+
+    async function addTask(){
          let valueInput = document.querySelector<HTMLInputElement>("#inputPesq");
         
         if(valueInput != undefined && valueInput.value.trim() !== ""){
-            setTasks([...tasks, {
-                task:  valueInput.value,
-                checkboxTask: false
-            }]);
-            valueInput.value = "";
+            // Realiza a requisição para adicionar uma nova task
+            const taskData = {
+                email: "LUCAS PENA",   // Aqui você pode ajustar o email dinamicamente
+                desctask: valueInput.value // Enviar o valor digitado como descrição da task
+            };
 
-            setEstado(true)
+            try {
+                const response = await fetch("http://localhost:8080/taks/add", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(taskData)
+                });
+
+                if (response.ok) {
+                    console.log("Task adicionada com sucesso");
+                    setTasks([...tasks, {
+                        task:  valueInput.value,
+                        checkboxTask: false
+                    }]);
+                    valueInput.value = "";
+                    setEstado(true);
+                } else {
+                    console.error("Erro ao adicionar task");
+                }
+            } catch (error) {
+                console.error("Erro na requisição:", error);
+            }
         }
     }
 
@@ -99,7 +121,7 @@ export default function HomePrinc() {
                                 type="text"
                                 id="inputPesq"
                                 className={styles.inputPes}
-                                placeholder="Pesquise pela Task ou Adicione 👀 ....."
+                                placeholder="Pesquise pela Task ou Adicione 👀 ..... "
                                 value={pesquisa}
                                 onChange={e => setPesquisa(e.target.value)}
                             />
