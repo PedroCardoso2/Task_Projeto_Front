@@ -5,6 +5,7 @@ import styles from "./Login.module.css"
 import Button from "@/Components/Button/Button";
 import Inputs from "@/Components/Inputs/Inputs";
 import { ChangeEvent, useState } from "react";
+import axios from 'axios';
 
 export default function Login(){
 
@@ -19,13 +20,23 @@ export default function Login(){
         setPassWord(event.target.value);
     }
 
-    const handleButtonClick = () => {
+    const handleButtonClick = async () => {
         console.log("Username: " + userName);
         console.log("Password: " + passWord);
+
+        try {
+            const response = await axios.post('http://localhost:8080/auth/login', {
+                login: userName,
+                password: passWord
+            });
+
+            console.log('Login successful:', response.data);
+        } catch (error) {
+            console.error('Error during login:', error);
+        }
     }
 
     return (
-  
         <div className={styles.container}>
             <div className={styles.img}>
                 <div className={styles.imageWrapper}>
@@ -50,6 +61,5 @@ export default function Login(){
                 <Button name="Enviar" css={styles.buttonEnviar} onClick={handleButtonClick}/>
             </div>
         </div>
-
     ); 
 }
