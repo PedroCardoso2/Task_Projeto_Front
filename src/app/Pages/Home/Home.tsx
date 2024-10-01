@@ -9,6 +9,7 @@ import { SlList } from "react-icons/sl";
 import { FcAbout } from "react-icons/fc";
 import { FcContacts } from "react-icons/fc";
 import { FcHome } from "react-icons/fc";
+import axios from "axios"; 
 
 export default function HomePrinc() { 
     const [tasks, setTasks] = useState<Taks[]>([]);
@@ -18,28 +19,25 @@ export default function HomePrinc() {
     const [isOpen, setIsOpen] = useState<boolean>(false); 
 
     async function addTask(){
-         let valueInput = document.querySelector<HTMLInputElement>("#inputPesq");
-        
-        if(valueInput != undefined && valueInput.value.trim() !== ""){
-            // Realiza a requisição para adicionar uma nova task
+        let valueInput = document.querySelector<HTMLInputElement>("#inputPesq");
+
+        if (valueInput != undefined && valueInput.value.trim() !== "") {
             const taskData = {
-                email: "LUCAS PENA",   // Aqui você pode ajustar o email dinamicamente
-                desctask: valueInput.value // Enviar o valor digitado como descrição da task
+                email: "LUCAS PENA",   
+                desctask: valueInput.value 
             };
 
             try {
-                const response = await fetch("http://localhost:8080/taks/add", {
-                    method: "POST",
+                const response = await axios.post("http://localhost:8080/taks/add", taskData, {
                     headers: {
                         "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(taskData)
+                    }
                 });
 
-                if (response.ok) {
+                if (response.status === 200) {
                     console.log("Task adicionada com sucesso");
                     setTasks([...tasks, {
-                        task:  valueInput.value,
+                        task: valueInput.value,
                         checkboxTask: false
                     }]);
                     valueInput.value = "";

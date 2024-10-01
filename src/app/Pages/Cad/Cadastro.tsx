@@ -7,10 +7,11 @@ import { useState, ChangeEvent } from "react";
 import axios from 'axios';
 
 export default function Cadastro() {
-    const [userName, setUserName] = useState('');
-    const [passWord, setPassWord] = useState('');
-    const [newPassword, setNewPassword] = useState('');
-    const [email, setEmail] = useState('');
+    const [userName, setUserName] = useState<String>('');
+    const [passWord, setPassWord] = useState<String>('');
+    const [newPassword, setNewPassword] = useState<String>('');
+    const [email, setEmail] = useState<String>('');
+    const [enable, setEnable] = useState<boolean>(true)
 
     const handleUserNameChange = (event: ChangeEvent<HTMLInputElement>) => {
         setUserName(event.target.value);
@@ -29,11 +30,8 @@ export default function Cadastro() {
     }
 
     const handleButtonClick = async () => {
-        console.log("Username: " + userName);
-        console.log("Password: " + passWord);
-        console.log("NewPassword: " + newPassword);
-        console.log("Email: " + email);
 
+        if(newPassword !== passWord) setEnable(false);
         
         try {
             const response = await axios.post('http://localhost:8080/auth/register', {
@@ -41,6 +39,10 @@ export default function Cadastro() {
                 password: passWord,
                 role: "USER"
             });
+
+            const token = response.data;
+
+            localStorage.setItem('token', token);
 
             console.log('Registration successful:', response.data);
         } catch (error) {
@@ -78,6 +80,10 @@ export default function Cadastro() {
                 <div className={styles.pass}>
                     <Image src={require('@/../../public/img/LC/email.svg')} alt="" width={16} />
                     <Inputs typeIp="text" placeHolder="Email" className={styles.passWord} max="200" onChange={handleEmailChange} />
+                </div>
+
+                <div className={styles.passwordWrong}>
+                    {enable ?  <p></p>  : <p style={{color:"red"}}>Senha Inválida</p>}
                 </div>
 
                 <Button name="Enviar" css={styles.buttonEnviar} onClick={handleButtonClick} />
