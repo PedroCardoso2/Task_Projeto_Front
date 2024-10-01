@@ -1,4 +1,5 @@
 export enum RoutePath {
     LOGIN = "/login",
-    PASSWORDRECOVERY = "/password-recovery"
+    REGISTER = "/register",
+    HOME = "/home"
   }
