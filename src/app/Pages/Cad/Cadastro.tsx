@@ -31,22 +31,26 @@ export default function Cadastro() {
 
     const handleButtonClick = async () => {
 
-        if(newPassword !== passWord) setEnable(false);
-        
-        try {
-            const response = await axios.post('http://localhost:8080/auth/register', {
-                login: userName,
-                password: passWord,
-                role: "USER"
-            });
+        if (newPassword !== passWord) {
+            setEnable(false)
+        } else {
 
-            const token = response.data;
+            try {
+                const response = await axios.post('http://localhost:8080/auth/register', {
+                    login: userName,
+                    password: passWord,
+                    role: "USER"
+                });
 
-            localStorage.setItem('token', token);
+                const token = response.data;
 
-            console.log('Registration successful:', response.data);
-        } catch (error) {
-            console.error('Error during registration:', error);
+                localStorage.setItem('token', token);
+
+                console.log('Registration successful:', response.data);
+                
+            } catch (error) {
+                console.error('Error during registration:', error);
+            }
         }
     }
 
@@ -83,7 +87,7 @@ export default function Cadastro() {
                 </div>
 
                 <div className={styles.passwordWrong}>
-                    {enable ?  <p></p>  : <p style={{color:"red"}}>Senha Inválida</p>}
+                    {enable ? <p></p> : <p style={{ color: "red" }}>Senha Inválida</p>}
                 </div>
 
                 <Button name="Enviar" css={styles.buttonEnviar} onClick={handleButtonClick} />
