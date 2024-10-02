@@ -6,11 +6,13 @@ import Button from "@/Components/Button/Button";
 import Inputs from "@/Components/Inputs/Inputs";
 import { ChangeEvent, useState } from "react";
 import axios from 'axios';
+import { useRouter } from "next/navigation";
 
 export default function Login(){
 
     const [userName, setUserName] = useState('');
     const [passWord, setPassWord] = useState('');
+    const router = useRouter();
 
     const handleUserNameChange = (event : ChangeEvent<HTMLInputElement>) => {
         setUserName(event.target.value); 
@@ -30,7 +32,12 @@ export default function Login(){
                 password: passWord
             });
 
-            console.log('Login successful:', response.data);
+            localStorage.setItem('token', response.data)
+
+            console.log('Seccessful:');
+            router.push('/home')
+
+
         } catch (error) {
             console.error('Error during login:', error);
         }
