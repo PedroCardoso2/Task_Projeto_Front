@@ -56,7 +56,7 @@ export default function Home() {
           }
         );
 
-        if (response.status === 200) {
+        if (response.status === 200 ) {
           console.log("Task adicionada com sucesso");
           setTasks([...tasks, { task: valueInput.value, checkboxTask: false }]);
           valueInput.value = "";
