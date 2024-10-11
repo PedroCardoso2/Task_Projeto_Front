@@ -1,0 +1,195 @@
+.navBarPrincipal {
+    margin-top: 40px; /* Mantém a margem para afastar a barra de navegação do topo da página */
+  }
+  
+  .navBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Permite o posicionamento absoluto dos elementos filhos */
+    width: 100%; /* Garante que a barra de navegação ocupe a largura total da tela */
+  }
+  
+  .conteinerImg {
+    display: flex;
+    gap: 5px;
+    position: absolute;
+    left: 0; /* Alinha o contêiner de imagens ao lado esquerdo */
+    margin: 15px 10px; /* Ajuste a margem conforme necessário */
+  }
+  
+  /* Imagem */
+  .imageWrapper {
+    display: flex;
+  }
+  
+  /* Textos */
+  .textList {
+    font-size: 15px;
+    color: #656565;
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .taskPage {
+    text-align: center;
+    margin-top: 40px; /* Adiciona margem superior para afastar do navbar */
+  }
+  
+  .textNavbar {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Espaçamento entre "Home" e "CheckList" */
+  }
+  
+  .textTaskListHome {
+    font-size: 50px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+  
+  /* Input de pesquisa */
+  .inputPes {
+    border: none;
+    outline: none;
+    background-color: #bebebe;
+    margin-left: 6px;
+    width: 360px;
+    font-size: 15px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+  
+  #pesqImg {
+    margin-left: 5px;
+    right: 5px;
+    margin-top: 3px;
+  }
+  
+  #adicionarImg {
+    margin-left: 5px;
+    margin-top: 3px;
+  }
+  
+  .pesq {
+    position: relative; /* Definindo a posição relativa para elementos filhos posicionados absolutamente */
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #bebebe;
+    width: 420px;
+    height: 35px;
+    padding: 2px;
+  }
+  
+  .conteinerHomeTask {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-top: 40px; 
+  }
+  
+  
+  .tasklist{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  
+  
+  
+  .customCheckbox {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    appearance: none;
+    background-color: #fff;
+    border: 2px solid #1f1f1f;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 10px;
+  }
+  
+  .customCheckbox:hover {
+    border-color: #1f1f1f;
+  }
+  
+  .customCheckbox:checked {
+    background-color: #1f1f1f;
+    border-color: #1f1f1f;
+  }
+  
+  .customCheckbox:checked::after {
+    content: "\2714"; 
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    color: white; 
+    font-size: 14px; 
+    font-weight: bold;
+  }
+  
+  
+  .sidebar {
+    position: fixed;
+    right: -250px; 
+    top: 0;
+    width: 270px;
+    height: 100%;
+    background-color: #f4f4f4;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease;
+    padding: 20px;
+  }
+  
+  .sidebar.open {
+    right: 0; 
+  }
+  
+  .sidebar h2 {
+    text-align: center;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    margin: 15px 0;
+    text-align: center;
+  }
+  
+  .sidebar-toggle {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin: 0;
+  }
+  
+  .sidebar-toggle:hover {
+    background-color: #333;
+  }
+  
+  .sidebarToggle{
+    background: none;
+    border: none;
+    font-size: 20px;
+  
+  }
+  
+  
+  
+  
