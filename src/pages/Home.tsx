@@ -14,34 +14,32 @@ export default function Home() {
   const [estado, setEstado] = useState<boolean>(true);
   const [pesquisa, setPesquisa] = useState("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  // const [loading, setLoading] = useState<boolean>(true);
-  // const [error, setError] = useState<string | null>(null);
-
   
-  // useEffect(() => {
+  const nomedoUsuario = "LUCAS PENA"; // Substitua pelo nome do usuário desejado
 
-  //   axios
-  //     .get(`http://localhost:8080/taks/user/`) 
-  //     .then((response) => {
-  //       const fetchedTasks = response.data.map((task: TaksResponse) => ({
-  //         task: task.description, 
-  //         checkboxTask: task.taskStatus === "PENDENTE" ? false : true, 
-  //       }));
-  //       setTasks(fetchedTasks); 
-  //       setLoading(false);
-  //     })
-  //     .catch((error) => {
-  //       setError(error.message);
-  //       setLoading(false);
-  //     });
-  // }, []);
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/taks/user/${nomedoUsuario}`);
+        const fetchedTasks = response.data.map((task: TaksResponse) => ({
+          task: task.description,
+          checkboxTask: task.taskStatus === "PENDENTE" ? false : true,
+        }));
+        setTasks(fetchedTasks);
+      } catch (error) {
+        console.error("Erro ao buscar tarefas:", error);
+      }
+    };
+
+    fetchTasks();
+  }, [nomedoUsuario]);
 
   async function addTask() {
     const valueInput = document.querySelector<HTMLInputElement>("#inputPesq");
 
-    if (valueInput != undefined && valueInput.value.trim() !== "") {
+    if (valueInput && valueInput.value.trim() !== "") {
       const taskData = {
-        email: "LUCAS PENA", 
+        email: nomedoUsuario, // Use o nome do usuário aqui
         desctask: valueInput.value,
       };
 
@@ -52,11 +50,11 @@ export default function Home() {
           {
             headers: {
               "Content-Type": "application/json",
-            }
+            },
           }
         );
 
-        if (response.status === 200 ) {
+        if (response.status === 200) {
           console.log("Task adicionada com sucesso");
           setTasks([...tasks, { task: valueInput.value, checkboxTask: false }]);
           valueInput.value = "";
@@ -96,14 +94,6 @@ export default function Home() {
     }
   }
 
-  // if (loading) {
-  //   return <div>Carregando...</div>; 
-  // }
-
-  // if (error) {
-  //   return <div>Erro: {error}</div>; 
-  // }
-
   return (
     <div className={styles.navBarPrincipal}>
       <div className={styles.navBar}>
@@ -131,9 +121,9 @@ export default function Home() {
                   border: "none",
                   cursor: "pointer",
                   fontSize: "20px",
-                  marginTop: "5px"
+                  marginTop: "5px",
                 }}
-                onClick={() => addTask()}
+                onClick={addTask}
               >
                 <IoIosAddCircle />
               </button>
@@ -149,7 +139,7 @@ export default function Home() {
 
               <button
                 style={{ background: "none", border: "none", cursor: "pointer" }}
-                onClick={() => searchTask()}
+                onClick={searchTask}
               >
                 <img
                   src={"../../public/pesquisar.svg"}
@@ -172,7 +162,7 @@ export default function Home() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  marginTop: "10px"
+                  marginTop: "10px",
                 }}
               >
                 {task.task}
@@ -188,7 +178,7 @@ export default function Home() {
                     marginLeft: "8px",
                     border: "none",
                     display: "flex",
-                    cursor: "pointer"
+                    cursor: "pointer",
                   }}
                   onClick={() => delTask(task.task)}
                 >
@@ -203,7 +193,7 @@ export default function Home() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  marginTop: "10px"
+                  marginTop: "10px",
                 }}
               >
                 {task.task}
@@ -219,7 +209,7 @@ export default function Home() {
                     marginLeft: "8px",
                     border: "none",
                     display: "flex",
-                    cursor: "pointer"
+                    cursor: "pointer",
                   }}
                   onClick={() => delTask(task.task)}
                 >
@@ -249,4 +239,3 @@ export default function Home() {
     </div>
   );
 }
-
