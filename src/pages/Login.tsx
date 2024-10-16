@@ -1,50 +1,19 @@
 import styles from "./Login.module.css"
 
-import { ChangeEvent, useState } from "react";
-import axios from 'axios';
+import {  useState } from "react";
 import Button from "../components/Button";
 import Inputs from "../components/Inputs";
 import { MdOutlineEmail } from "react-icons/md";
 import { MdOutlineLock } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { useAuth, UserProps } from "../context";
 
 
 export default function Login(){
-
-    const [userName, setUserName] = useState('');
-    const [passWord, setPassWord] = useState('');
-    const navigate = useNavigate();
+    const { login } = useAuth();
    
-
-    const handleUserNameChange = (event : ChangeEvent<HTMLInputElement>) => {
-        setUserName(event.target.value); 
-    }
-
-    const handlePasswordChange = (event : ChangeEvent<HTMLInputElement>) => {
-        setPassWord(event.target.value);
-    }
-
-    const handleButtonClick = async () => {
-        console.log("Username: " + userName);
-        console.log("Password: " + passWord);
-        
-        
-
-        try {
-            const response = await axios.post('http://localhost:8080/auth/login', {
-                login: userName,
-                password: passWord
-            });
-
-            const token : string = response.data;
-
-            localStorage.setItem('token', token);
-            navigate('/');
-
-        } catch (error) {
-            console.error('Error during login:', error);
-        }
-    }
+    const [loginBody , setLoginBody] = useState<UserProps>({} as UserProps);
+    
+    const sendDate = (data: UserProps) => login(data);
 
     return (
         <div className={styles.container}>
@@ -60,15 +29,28 @@ export default function Login(){
             <div className={styles.points}>
                 <div className={styles.user}>
                 <MdOutlineEmail />
-                    <Inputs typeIp="text" placeHolder="Email" className={styles.userName} max="200" onChange={handleUserNameChange} />
+                    <Inputs 
+                    typeIp="text" 
+                    placeHolder="Email" 
+                    className={styles.userName} 
+                    max="200" 
+                    onChange={e => setLoginBody({...loginBody, login: e.target.value})} />
                 </div>
             
                 <div className={styles.pass}>
                 <MdOutlineLock />
-                    <Inputs typeIp="password" placeHolder="Password" className={styles.passWord} max="200" onChange={handlePasswordChange} />
+                    <Inputs typeIp="password" 
+
+                    placeHolder="Password" 
+
+                    className={styles.passWord} 
+
+                    max="200" 
+
+                    onChange={e => setLoginBody({...loginBody, password: e.target.value})} />
                 </div>
 
-                <Button name="Enviar" css={styles.buttonEnviar} onClick={handleButtonClick}/>
+                <Button name="Enviar" css={styles.buttonEnviar} onClick={() => sendDate(loginBody)}/>
             </div>
         </div>
     ); 

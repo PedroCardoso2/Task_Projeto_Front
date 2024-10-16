@@ -1,9 +1,11 @@
 import { useAuth } from "."
 
 export default function Pages(){
-    const { user, logout } = useAuth();
+    const { login, register } = useAuth();
 
     console.log(user);
+
+    
 
     return (<>
         <h1>Olá</h1>
