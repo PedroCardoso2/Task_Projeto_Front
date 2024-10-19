@@ -1,11 +1,13 @@
 import styles from "./Login.module.css"
 
 import {  useState } from "react";
-import Button from "../components/Button";
-import Inputs from "../components/Inputs";
+
 import { MdOutlineEmail } from "react-icons/md";
 import { MdOutlineLock } from "react-icons/md";
-import { useAuth, UserProps } from "../context";
+import { useAuth, UserProps } from "../../context";
+import Inputs from "../../components/Inputs";
+import Button from "../../components/Button";
+
 
 
 export default function Login(){

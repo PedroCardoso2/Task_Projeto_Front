@@ -1,13 +1,13 @@
 import styles from "../pages/Cadastro.module.css";
 
 import { useState, ChangeEvent } from "react";
-import Button from "../components/Button";
-import Inputs from "../components/Inputs";
+import Button from "../../components/Button";
+import Inputs from "../../components/Inputs";
 import { MdOutlineEmail } from "react-icons/md";
 import { MdOutlineLock } from "react-icons/md";
 import { RiUserLine } from "react-icons/ri";
 
-import { useAuth, UserRegisterProps } from "../context";
+import { useAuth, UserRegisterProps } from "../../context";
 
 export default function Cadastro() {
 

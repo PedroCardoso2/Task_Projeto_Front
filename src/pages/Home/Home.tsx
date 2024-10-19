@@ -5,8 +5,8 @@ import { ImBin2 } from "react-icons/im";
 import { SlList } from "react-icons/sl";
 import { FcAbout, FcContacts, FcHome } from "react-icons/fc";
 import axios from "axios";
-import { Taks } from "./Task";
-import { TaksResponse } from "./TaskReponse";
+import { Taks } from "../Task";
+import { TaksResponse } from "../TaskReponse";
 
 export default function Home() {
   const [tasks, setTasks] = useState<Taks[]>([]);

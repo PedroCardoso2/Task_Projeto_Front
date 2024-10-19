@@ -1,8 +1,8 @@
 import { ReactElement } from "react";
 import { RouthPath } from "./route-path"
-import Login from "../pages/Login";
-import Cadastro from "../pages/Cadastro";
-import Home from "../pages/Home";
+import Cadastro from "../pages/Singup/Cadastro";
+import Home from "../pages/Home/Home";
+import Login from "../pages/Login/Login";
 
 export type RouteElement = {
     path: RouthPath;
