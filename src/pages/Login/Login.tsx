@@ -17,6 +17,8 @@ export default function Login(){
     
     const sendDate = (data: UserProps) => login(data);
 
+    console.log(sendDate + "< - Resultado")
+
     return (
         <div className={styles.container}>
             <div className={styles.img}>

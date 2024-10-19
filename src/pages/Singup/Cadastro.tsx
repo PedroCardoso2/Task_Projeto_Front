@@ -1,4 +1,4 @@
-import styles from "../pages/Cadastro.module.css";
+import styles from "../Singup/Cadastro.module.css";
 
 import { useState, ChangeEvent } from "react";
 import Button from "../../components/Button";
