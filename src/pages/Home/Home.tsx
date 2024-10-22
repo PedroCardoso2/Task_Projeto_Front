@@ -39,7 +39,7 @@ export default function Home() {
 
     if (valueInput && valueInput.value.trim() !== "") {
       const taskData = {
-        email: nomedoUsuario, // Use o nome do usuário aqui
+        email: nomedoUsuario,
         desctask: valueInput.value,
       };
 
