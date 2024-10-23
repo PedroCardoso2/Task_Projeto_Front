@@ -4,67 +4,49 @@ import { IoIosAddCircle } from "react-icons/io";
 import { ImBin2 } from "react-icons/im";
 import { SlList } from "react-icons/sl";
 import { FcAbout, FcContacts, FcHome } from "react-icons/fc";
-import axios from "axios";
+
 import { Taks } from "../Task";
-import { TaksResponse } from "../TaskReponse";
+
+import { TaskProps, useAuth } from "../../context";
 
 export default function Home() {
+  const { fetchTasks, addTask } = useAuth();
+  
   const [tasks, setTasks] = useState<Taks[]>([]);
   const [stade, setStade] = useState<Taks[]>([]);
   const [estado, setEstado] = useState<boolean>(true);
   const [pesquisa, setPesquisa] = useState("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  
-  const nomedoUsuario = "LUCAS PENA"; // Substitua pelo nome do usuário desejado
+
+  const emailUser = "Lukas"; // Substitua pelo nome do usuário desejado
+
+  // Implementação da função fetchAndSetTasks dentro do componente
+  const fetchAndSetTasks = async () => {
+    try {
+      const response: TaskProps[] = await fetchTasks(emailUser);
+      const tasks: Taks[] = response.map(tk => ({
+        task: tk.description,
+        checkboxTask: tk.taskStatus === "PENDENTE" ? false : true // Ajuste para refletir o status
+      }));
+
+      setTasks(tasks);
+    } catch (error) {
+      console.error("Erro ao buscar tarefas:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const response = await axios.get(`http://localhost:8080/taks/user/${nomedoUsuario}`);
-        const fetchedTasks = response.data.map((task: TaksResponse) => ({
-          task: task.description,
-          checkboxTask: task.taskStatus === "PENDENTE" ? false : true,
-        }));
-        setTasks(fetchedTasks);
-      } catch (error) {
-        console.error("Erro ao buscar tarefas:", error);
-      }
-    };
+    fetchAndSetTasks(); // Carrega as tarefas ao iniciar o componente
+  }, [emailUser]);
 
-    fetchTasks();
-  }, [nomedoUsuario]);
-
-  async function addTask() {
+  // Função de adicionar tarefa
+  async function addTasks(user: string) {
     const valueInput = document.querySelector<HTMLInputElement>("#inputPesq");
 
     if (valueInput && valueInput.value.trim() !== "") {
-      const taskData = {
-        email: nomedoUsuario,
-        desctask: valueInput.value,
-      };
-
-      try {
-        const response = await axios.post(
-          "http://localhost:8080/taks/add",
-          taskData,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        if (response.status === 200) {
-          console.log("Task adicionada com sucesso");
-          setTasks([...tasks, { task: valueInput.value, checkboxTask: false }]);
-          valueInput.value = "";
-          setEstado(true);
-        } else {
-          console.error("Erro ao adicionar task");
-        }
-      } catch (error) {
-        console.error("Erro na requisição:", error);
-      }
+      await addTask(valueInput.value, user); // Adiciona a tarefa
+      valueInput.value = ""; // Limpa o campo após adicionar
+      await fetchAndSetTasks(); // Atualiza a lista de tarefas após a adição
     }
   }
 
@@ -123,7 +105,7 @@ export default function Home() {
                   fontSize: "20px",
                   marginTop: "5px",
                 }}
-                onClick={addTask}
+                onClick={() => addTasks(emailUser)}
               >
                 <IoIosAddCircle />
               </button>

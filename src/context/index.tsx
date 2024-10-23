@@ -64,10 +64,10 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     // Função para buscar as tarefas de um usuário
     const fetchTasks = async (username: string) => {
         try {
-            const response = await api.get(`/tasks/user/${username}`);
+            const response = await api.get(`/taks/${username}`);
             const fetchedTasks = response.data;
             setTasks(fetchedTasks);
-            return fetchedTasks;
+            return fetchedTasks; 
         } catch (error) {
             console.error("Erro ao buscar tarefas:", error);
             throw error;
@@ -81,7 +81,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 email: username,
                 desctask: taskDescription,
             };
-            const response = await api.post("/tasks/add", taskData, {
+            const response = await api.post("/taks/add", taskData, {
                 headers: {
                     "Content-Type": "application/json",
                 },
