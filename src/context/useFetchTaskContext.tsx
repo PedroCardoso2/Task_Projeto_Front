@@ -40,8 +40,7 @@ const FetchProvider = ({ children }: { children: React.ReactNode }) => {
                 },
             });
             if (response.status === 200) {
-                console.log("Task adicionada com sucesso");
-                await fetchTasks(username); // Atualiza as tarefas após adicionar
+                await fetchTasks(username); 
             }
         } catch (error) {
             console.error("Erro ao adicionar tarefa:", error);
