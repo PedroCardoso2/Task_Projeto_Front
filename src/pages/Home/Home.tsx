@@ -7,10 +7,11 @@ import { FcAbout, FcContacts, FcHome } from "react-icons/fc";
 
 import { Taks } from "../Task";
 
-import { TaskProps, useAuth } from "../../context";
+import { TaskProps } from "../../context/useAuthContext";
+import { useFetch } from "../../context/useFetchTaskContext";
 
 export default function Home() {
-  const { fetchTasks, addTask } = useAuth();
+  const { fetchTasks, addTask } = useFetch();
   
   const [tasks, setTasks] = useState<Taks[]>([]);
   const [stade, setStade] = useState<Taks[]>([]);
@@ -18,15 +19,15 @@ export default function Home() {
   const [pesquisa, setPesquisa] = useState("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const emailUser = "Lukas"; // Substitua pelo nome do usuário desejado
+  const emailUser: string  = localStorage.getItem("@taskList:accessUser") as string; 
 
-  // Implementação da função fetchAndSetTasks dentro do componente
+
   const fetchAndSetTasks = async () => {
     try {
       const response: TaskProps[] = await fetchTasks(emailUser);
       const tasks: Taks[] = response.map(tk => ({
         task: tk.description,
-        checkboxTask: tk.taskStatus === "PENDENTE" ? false : true // Ajuste para refletir o status
+        checkboxTask: tk.taskStatus === "PENDENTE" ? false : true 
       }));
 
       setTasks(tasks);
@@ -36,7 +37,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    fetchAndSetTasks(); // Carrega as tarefas ao iniciar o componente
+    fetchAndSetTasks(); 
   }, [emailUser]);
 
   // Função de adicionar tarefa
@@ -44,9 +45,9 @@ export default function Home() {
     const valueInput = document.querySelector<HTMLInputElement>("#inputPesq");
 
     if (valueInput && valueInput.value.trim() !== "") {
-      await addTask(valueInput.value, user); // Adiciona a tarefa
-      valueInput.value = ""; // Limpa o campo após adicionar
-      await fetchAndSetTasks(); // Atualiza a lista de tarefas após a adição
+      await addTask(valueInput.value, user); 
+      valueInput.value = ""; 
+      await fetchAndSetTasks(); 
     }
   }
 

@@ -7,6 +7,7 @@ import Login from "../pages/Login/Login";
 export type RouteElement = {
     path: RouthPath;
     element: ReactElement;
+    private?: boolean
 };
 
 export const routes: RouteElement[] = [
@@ -20,6 +21,7 @@ export const routes: RouteElement[] = [
     },
     {
         path: RouthPath.HOME,
-        element: <Home/>
+        element: <Home/>,
+        private: true
     }
 ];

@@ -1,23 +1,22 @@
-import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import './App.css';
+import { Routes, Route } from 'react-router-dom';
 import { RouteElement, routes } from './routes/routes';
+import RotaPrivada from './routes/RotaPrivada';
 
 function App() {
-
-
   return (
-    
-    <Router>
     <Routes>
-      {
-        routes.map((route: RouteElement , idx: number) => {
-          return <Route key={idx} path={route.path} element={route.element}/>
-        })
-      }
+      {routes.map((route: RouteElement, idx: number) => (
+        <Route
+          key={idx}
+          path={route.path}
+          element={
+            route.private ? <RotaPrivada element={route.element} /> : route.element
+          }
+        />
+      ))}
     </Routes>
-  </Router>
-  )
+  );
 }
 
-export default App
+export default App;

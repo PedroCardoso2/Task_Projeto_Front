@@ -1,10 +1,12 @@
 import React from "react";
-import { AuthProvider } from ".";
-
-export const Providers = ({children} : {children: React.ReactNode}) => {
+import { AuthProvider } from "./useAuthContext";
+import { FetchProvider } from "./useFetchTaskContext";
+export const Providers = ({ children }: { children: React.ReactNode }) => {
     return (<>
         <AuthProvider>
-            {children}
+            <FetchProvider>
+                {children}
+            </FetchProvider>
         </AuthProvider>
     </>);
 }

@@ -1,66 +1,19 @@
-import React, { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
+import { TaskProps } from "./useAuthContext";
 import { api } from "../lib/axios";
-import { RouthPath } from "../routes/route-path";
 
-export type UserProps = {
-    login: string;
-    password: string;
-};
-
-export type UserRegisterProps = {
-    login: string;
-    password: string;
-    ROLE: string;
-};
-
-export type TaskProps = {
-    id: number;
-    description: string;
-    taskStatus: string;
-    dateTask: string;
-};
-
-type AuthContextProps = {
-    login: (user: UserProps) => Promise<void>;
-    register: (userRegister: UserRegisterProps) => Promise<void>;
+type fetchProps = {
     fetchTasks: (username: string) => Promise<TaskProps[]>;
     addTask: (task: string, username: string) => Promise<void>;
     deleteTask: (taskId: number) => Promise<void>;
-};
+}
 
-// Cria um contexto
-const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
+const fetchContext = createContext<fetchProps>({} as fetchProps);
 
-const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+
+const FetchProvider = ({ children }: { children: React.ReactNode }) => {
     const [tasks, setTasks] = useState<TaskProps[]>([]);
-
-    // Função para login
-    const login = async (data: UserProps) => {
-        try {
-            const response = await api.post("/auth/login", data);
-            const accessToken = response.data;
-
-            localStorage.setItem("@taskList:accessToken", accessToken);
-
-            window.location.href = RouthPath.HOME;
-        } catch (e) {
-            console.log(e);
-        }
-    };
-
-    // Função para registro
-    const register = async (data: UserRegisterProps) => {
-        try {
-            const response = await api.post("/auth/register", data);
-            const accessToken = response.data;
-
-            localStorage.setItem("@taskList:accessToken", accessToken);
-            window.location.href = RouthPath.HOME;
-        } catch (e) {
-            console.log(e);
-        }
-    };
-
+    
     // Função para buscar as tarefas de um usuário
     const fetchTasks = async (username: string) => {
         try {
@@ -108,13 +61,14 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         }
     };
 
+
     return (
-        <AuthContext.Provider value={{ login, register, fetchTasks, addTask, deleteTask }}>
+        <fetchContext.Provider value={{ fetchTasks, addTask, deleteTask }} >
             {children}
-        </AuthContext.Provider>
+        </fetchContext.Provider>
     );
-};
+}
 
-const useAuth = () => useContext(AuthContext);
+const useFetch = () => useContext(fetchContext);
 
-export { AuthContext, useAuth, AuthProvider };
+export { FetchProvider, useFetch };

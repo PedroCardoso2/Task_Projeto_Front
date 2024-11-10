@@ -7,7 +7,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { MdOutlineLock } from "react-icons/md";
 import { RiUserLine } from "react-icons/ri";
 
-import { useAuth, UserRegisterProps } from "../../context";
+import { useAuth, UserRegisterProps } from "../../context/useAuthContext";
 
 export default function Cadastro() {
 
