@@ -24,30 +24,29 @@ const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const navigate = useNavigate();
     // Função para login
-    const login = async (data: UserProps) => {
+    const login = async (dateUserProps: UserProps) => {
         try {
-            const response = await api.post("/auth/login", data);
+            const response = await api.post("/auth/login", dateUserProps);
             const accessToken = response.data;
 
             localStorage.setItem("@taskList:accessToken", accessToken.token);
-            localStorage.setItem("@taskList:accessUser", data.login);
-            autenticaStore.auth({ email: data.login, token: accessToken.token });
+            localStorage.setItem("@taskList:accessUser", dateUserProps.login);
+            autenticaStore.auth({ email: dateUserProps.login, token: accessToken.token });
             navigate(RouthPath.HOME);
-            
         } catch (e) {
             console.log(e);
         }
     };
 
     // Função para registro
-    const register = async (data: UserRegisterProps) => {
+    const register = async (dateUserProps: UserRegisterProps) => {
         try {
-            const response = await api.post("/auth/register", data);
+            const response = await api.post("/auth/register", dateUserProps);
             const accessToken = response.data;
 
             localStorage.setItem("@taskList:accessToken", accessToken.token);
-            localStorage.setItem("@taskList:accessUser", data.login);
-            autenticaStore.auth({ email: data.login, token: accessToken.token });
+            localStorage.setItem("@taskList:accessUser", dateUserProps.login);
+            autenticaStore.auth({ email: dateUserProps.login, token: accessToken.token });
             navigate(RouthPath.HOME);
         } catch (e) {
             console.log(e);

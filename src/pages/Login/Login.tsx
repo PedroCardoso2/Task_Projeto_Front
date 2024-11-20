@@ -18,6 +18,7 @@ export default function Login() {
 
     const sendDate = (data: UserProps) => login(data);
 
+
     return (
         <div className={styles.container}>
             <div className={styles.img}>
@@ -54,6 +55,7 @@ export default function Login() {
                 </div>
 
                 <Button name="Enviar" css={styles.buttonEnviar} onClick={() => sendDate(loginBody)} />
+               
             </div>
         </div>
     );

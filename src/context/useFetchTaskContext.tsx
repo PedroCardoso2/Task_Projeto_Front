@@ -13,7 +13,6 @@ const fetchContext = createContext<fetchProps>({} as fetchProps);
 
 const FetchProvider = ({ children }: { children: React.ReactNode }) => {
     const [tasks, setTasks] = useState<TaskProps[]>([]);
-    
     // Função para buscar as tarefas de um usuário
     const fetchTasks = async (username: string) => {
         try {
@@ -50,8 +49,8 @@ const FetchProvider = ({ children }: { children: React.ReactNode }) => {
     // Função para deletar uma tarefa
     const deleteTask = async (taskId: number) => {
         try {
-            const response = await api.delete(`/tasks/${taskId}`);
-            if (response.status === 200) {
+            const response = await api.delete(`/taks/${taskId}`);
+            if (response.status === 202) {
                 console.log("Task deletada com sucesso");
                 setTasks((prevTasks) => prevTasks.filter(task => task.id !== taskId));
             }

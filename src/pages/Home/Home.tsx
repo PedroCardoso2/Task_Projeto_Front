@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./Home.module.css";
 import { IoIosAddCircle } from "react-icons/io";
 import { ImBin2 } from "react-icons/im";
@@ -6,12 +6,11 @@ import { SlList } from "react-icons/sl";
 import { FcAbout, FcContacts, FcHome } from "react-icons/fc";
 
 import { Taks } from "../Task";
-
-import { TaskProps } from "../../context/useAuthContext";
 import { useFetch } from "../../context/useFetchTaskContext";
+import { useQuery } from "react-query";
 
 export default function Home() {
-  const { fetchTasks, addTask } = useFetch();
+  const { fetchTasks, addTask, deleteTask } = useFetch();
   
   const [tasks, setTasks] = useState<Taks[]>([]);
   const [stade, setStade] = useState<Taks[]>([]);
@@ -19,40 +18,39 @@ export default function Home() {
   const [pesquisa, setPesquisa] = useState("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const emailUser: string  = localStorage.getItem("@taskList:accessUser") as string; 
+  const emailUser: string = localStorage.getItem("@taskList:accessUser") as string;
 
+  const {  isLoading, error, refetch } = useQuery(
+    ["tasks", emailUser],
+    () => fetchTasks(emailUser),
+    {
+      onSuccess: (response) => {
+        const tasks: Taks[] = response.map((tk) => ({
+          id: tk.id,
+          task: tk.description,
+          checkboxTask: tk.taskStatus === "PENDENTE" ? false : true,
+        }));
 
-  const fetchAndSetTasks = async () => {
-    try {
-      const response: TaskProps[] = await fetchTasks(emailUser);
-      const tasks: Taks[] = response.map(tk => ({
-        task: tk.description,
-        checkboxTask: tk.taskStatus === "PENDENTE" ? false : true 
-      }));
-
-      setTasks(tasks);
-    } catch (error) {
-      console.error("Erro ao buscar tarefas:", error);
+        setTasks(tasks);
+      },
+      
+      refetchOnWindowFocus: false,
     }
-  };
+  );
 
-  useEffect(() => {
-    fetchAndSetTasks(); 
-  }, [emailUser]);
-
-  // Função de adicionar tarefa
   async function addTasks(user: string) {
     const valueInput = document.querySelector<HTMLInputElement>("#inputPesq");
-
     if (valueInput && valueInput.value.trim() !== "") {
       await addTask(valueInput.value, user); 
       valueInput.value = ""; 
-      await fetchAndSetTasks(); 
+      await refetch();
     }
   }
 
   function delTask(text: string) {
     const newTask: Taks[] = tasks.filter((nameTask) => nameTask.task !== text);
+    const findTaskId: number | undefined = tasks.find((task) => task.task === text)?.id;
+    deleteTask(findTaskId as number);
     setTasks(newTask);
   }
 
@@ -65,10 +63,9 @@ export default function Home() {
 
   function searchTask() {
     const valueInput = document.querySelector<HTMLInputElement>("#inputPesq");
-
     if (valueInput?.value.trim() !== "") {
       const filteredTasks = tasks.filter(
-        (task) => task.task === valueInput?.value
+      (task) => task.task === valueInput?.value
       );
       setStade(filteredTasks);
       setEstado(false);
@@ -115,7 +112,7 @@ export default function Home() {
                 type="text"
                 id="inputPesq"
                 className={styles.inputPes}
-                placeholder="Pesquise pela Task ou Adicione 👀 ..... "
+                placeholder="Pesquise pela Task ou Adicione ..... "
                 value={pesquisa}
                 onChange={(e) => setPesquisa(e.target.value)}
               />
@@ -137,69 +134,43 @@ export default function Home() {
       </div>
 
       <div className={styles.tasklist}>
-        {estado
-          ? tasks.map((task, index) => (
-              <div
-                key={index}
+        {isLoading ? (
+          <p>Carregando tarefas...</p>
+        ) : error ? (
+          <p style={{ color: "red" }}>Ocorreu um erro ao carregar as tarefas.</p>
+        ) : (
+          (estado ? tasks : stade).map((task, index) => (
+            <div
+              key={index}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: "10px",
+              }}
+            >
+              {task.task}
+              <input
+                className={styles.customCheckbox}
+                type="checkbox"
+                checked={task.checkboxTask}
+                onChange={() => toggleStatusTask(index)}
+              />
+              <button
                 style={{
+                  background: "none",
+                  marginLeft: "8px",
+                  border: "none",
                   display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginTop: "10px",
+                  cursor: "pointer",
                 }}
+                onClick={() => delTask(task.task)}
               >
-                {task.task}
-                <input
-                  className={styles.customCheckbox}
-                  type="checkbox"
-                  checked={task.checkboxTask}
-                  onChange={() => toggleStatusTask(index)}
-                />
-                <button
-                  style={{
-                    background: "none",
-                    marginLeft: "8px",
-                    border: "none",
-                    display: "flex",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => delTask(task.task)}
-                >
-                  <ImBin2 style={{ width: "10px" }} />
-                </button>
-              </div>
-            ))
-          : stade.map((task, index) => (
-              <div
-                key={index}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginTop: "10px",
-                }}
-              >
-                {task.task}
-                <input
-                  className={styles.customCheckbox}
-                  type="checkbox"
-                  checked={task.checkboxTask}
-                  onChange={() => toggleStatusTask(index)}
-                />
-                <button
-                  style={{
-                    background: "none",
-                    marginLeft: "8px",
-                    border: "none",
-                    display: "flex",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => delTask(task.task)}
-                >
-                  <ImBin2 style={{ width: "10px" }} />
-                </button>
-              </div>
-            ))}
+                <ImBin2 style={{ width: "10px" }} />
+              </button>
+            </div>
+          ))
+        )}
       </div>
 
       <div className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}>

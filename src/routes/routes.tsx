@@ -22,6 +22,6 @@ export const routes: RouteElement[] = [
     {
         path: RouthPath.HOME,
         element: <Home/>,
-        private: true
+        private: false
     }
 ];
